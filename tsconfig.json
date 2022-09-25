@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "lib": ["es6"],
+    "target": "es5",
+    "module": "commonjs",
+    "outDir": "build",
+    "rootDir": "src",
+    "noImplicitAny": false,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/*"],
+  "exclude": ["node_modules", "**/build", "jest.config.js"]
+}

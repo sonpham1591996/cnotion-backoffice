@@ -186,13 +186,9 @@ export class HistoricalPortfolioService {
         if (!tempMap.get(holding.timestamp)) {
           tempMap.set(holding.timestamp, new Map())
         }
-        ;['open', 'high', 'low', 'close'].forEach((field) => {
-          if (tempMap.get(holding.timestamp)?.get(field)) {
-            tempMap.get(holding.timestamp)?.set(field, tempMap.get(holding.timestamp)?.get(field) + holding.open.quote)
-          } else {
-            tempMap.get(holding.timestamp)?.set(field, holding.open.quote)
-          }
-        })
+        tempMap
+          .get(holding.timestamp)
+          ?.set('close', (tempMap.get(holding.timestamp)?.get('close') ?? 0) + holding.close.quote)
       })
     })
 
@@ -207,12 +203,7 @@ export class HistoricalPortfolioService {
       const key = keys[i]
       logs.push({
         timestamp: key,
-        value:
-          ((tempMap.get(key)?.get('open') ?? 0) +
-            (tempMap.get(key)?.get('high') ?? 0) +
-            (tempMap.get(key)?.get('low') ?? 0) +
-            (tempMap.get(key)?.get('close') ?? 0)) /
-          4,
+        value: tempMap.get(key).get('close') ?? 0,
       })
     }
 

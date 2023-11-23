@@ -49,6 +49,7 @@ export class PortfolioService {
         chart_data: historicalPortfolioData,
       }
     } catch (error) {
+      console.error(error);
       throw new Error('Server internal error, please try again.')
     }
   }

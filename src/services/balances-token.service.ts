@@ -82,7 +82,7 @@ export class BalancesTokenService {
       balance_token_data?.items?.length > 0
         ? +parseFloat(
             `${Array.from(balance_token_data.items ?? []).reduce((total: number, item: any) => {
-              total += parseFloat(item.quote.toFixed(7))
+              total += parseFloat(item.quote?.toFixed(7))
               return total
             }, 0)}`
           ).toFixed(7)
